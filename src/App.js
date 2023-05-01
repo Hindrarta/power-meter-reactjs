@@ -1,19 +1,21 @@
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { themeSettings } from "./theme";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 function App() {
+    const mode = useSelector((state) => state.global.mode);
+    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div className="app">
+            <BrowserRouter>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Routes>{/* <Route element={<Layout/>}/> */}</Routes>
+                </ThemeProvider>
+            </BrowserRouter>
         </div>
     );
 }
