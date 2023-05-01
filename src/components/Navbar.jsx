@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import profileImage from "assets/profile.jpeg";
 
-const Navbar = () => {
+const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     const dispatch = useDispatch();
     const theme = useTheme();
     return (
@@ -34,7 +34,7 @@ const Navbar = () => {
                 {/* LEFT SIDE */}
                 <FlexBetween>
                     <IconButton
-                        onClick={() => console.log("Open/Close Sidebar")}
+                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                     >
                         <MenuIcon />
                     </IconButton>
