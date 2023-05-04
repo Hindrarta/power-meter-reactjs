@@ -1,3 +1,5 @@
+import { interpolateRdYlGn } from "d3-scale-chromatic";
+
 // color design tokens export
 export const tokensDark = {
     grey: {
@@ -96,6 +98,7 @@ export const themeSettings = (mode) => {
                       background: {
                           default: tokensDark.primary[600],
                           alt: tokensDark.primary[500],
+                          hover: tokensDark.primary[400],
                       },
                   }
                 : {
@@ -117,6 +120,7 @@ export const themeSettings = (mode) => {
                       background: {
                           default: tokensDark.grey[0],
                           alt: tokensDark.grey[50],
+                          hover: tokensDark.grey[100],
                       },
                   }),
         },
@@ -149,4 +153,29 @@ export const themeSettings = (mode) => {
             },
         },
     };
+};
+
+function Rgb2Hex(rgb) {
+    let rgb_split = rgb.split("(");
+    rgb_split = rgb_split[1].split(")");
+    rgb_split = rgb_split[0].split(",");
+    let hexColor = rgb_split.map((x) => {
+        x = parseInt(x).toString(16).toUpperCase();
+        return x.length === 1 ? "0" + x : x;
+    });
+    hexColor = "#" + hexColor.join("");
+    return hexColor;
+}
+
+export const StackedBarColorGen = (n) => {
+    let i = 0;
+    let min = 0.15;
+    let max = 0.85;
+    let colorList = [];
+    for (i = 0; i <= n; i++) {
+        let x = interpolateRdYlGn((i / n) * (max - min) + min);
+        let hexColor = Rgb2Hex(x);
+        colorList = [...colorList, hexColor];
+    }
+    return colorList;
 };

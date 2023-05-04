@@ -14,19 +14,9 @@ import {
 } from "@mui/material";
 import {
     SettingsOutlined,
-    ChevronLeftOutlined,
     ChevronLeft,
     HomeOutlined,
     DevicesOutlined,
-    Groups2Outlined,
-    ReceiptLongOutlined,
-    PublicOutlined,
-    PointOfSaleOutlined,
-    TodayOutlined,
-    CalendarMonthOutlined,
-    AdminPanelSettingsOutlined,
-    TrendingUpOutlined,
-    PieChartOutlined,
     ChevronRightOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
@@ -35,12 +25,12 @@ import FlexBetween from "./FlexBetween";
 import profileImage from "assets/profile.jpeg";
 
 const navItems = [
-    { text: "Overview", icon: null },
-    { text: "Dashboard", icon: <HomeOutlined /> },
-    { text: "Device List", icon: null },
-    { text: "DeviceList", icon: <DevicesOutlined /> },
-    { text: "Management", icon: null },
-    { text: "Settings", icon: <SettingsOutlined /> },
+    // { text: "Overview", icon: null },
+    // { text: "Device List", icon: null },
+    // { text: "Management", icon: null },
+    { text: "Dashboard", urlPath: "home", icon: <HomeOutlined /> },
+    { text: "Device List", urlPath: "devicelist", icon: <DevicesOutlined /> },
+    { text: "Settings", urlPath: "settings", icon: <SettingsOutlined /> },
 ];
 
 const Sidebar = ({
@@ -53,6 +43,9 @@ const Sidebar = ({
     const [active, setActive] = useState("");
     const navigate = useNavigate();
     const theme = useTheme();
+    const themePrimary = theme.palette.primary;
+    const themeSecondary = theme.palette.secondary;
+    const themeBackground = theme.palette.background;
 
     useEffect(() => {
         setActive(pathname.substring(1));
@@ -69,7 +62,7 @@ const Sidebar = ({
                     sx={{
                         width: drawerWidth,
                         "& .MuiDrawer-paper": {
-                            color: theme.palette.secondary[200],
+                            color: themeSecondary[200],
                             backgroundColor: theme.palette.background.alt,
                             boxSizing: "border-box",
                             borderWidth: isNonMobile ? 0 : "2px",
@@ -79,7 +72,7 @@ const Sidebar = ({
                 >
                     <Box width="100%">
                         <Box m="1.5rem 2rem 2rem 3rem">
-                            <FlexBetween color={theme.palette.secondary.main}>
+                            <FlexBetween color={themeSecondary.main}>
                                 <Box
                                     display="flex"
                                     alignItems="center"
@@ -101,7 +94,7 @@ const Sidebar = ({
                             </FlexBetween>
                         </Box>
                         <List>
-                            {navItems.map(({ text, icon }) => {
+                            {navItems.map(({ text, icon, urlPath }) => {
                                 if (!icon) {
                                     return (
                                         <Typography
@@ -117,32 +110,39 @@ const Sidebar = ({
                                     <ListItem key={text} disablePadding>
                                         <ListItemButton
                                             onClick={() => {
-                                                navigate(`/${lcText}`);
+                                                navigate(`/${urlPath}`);
                                                 setActive(lcText);
                                             }}
                                             sx={{
                                                 backgroundColor:
                                                     active === lcText
-                                                        ? theme.palette
-                                                              .secondary[300]
+                                                        ? themeSecondary[500]
                                                         : "transparent",
                                                 color:
                                                     active === lcText
-                                                        ? theme.palette
-                                                              .primary[600]
-                                                        : theme.palette
-                                                              .secondary[100],
+                                                        ? themePrimary[600]
+                                                        : themeSecondary[100],
                                             }}
+                                            onMouseEnter={(e) =>
+                                                (e.target.style.backgroundColor =
+                                                    active === lcText
+                                                        ? themeSecondary[400]
+                                                        : themeBackground.hover)
+                                            }
+                                            onMouseLeave={(e) =>
+                                                (e.target.style.backgroundColor =
+                                                    active === lcText
+                                                        ? themeSecondary[500]
+                                                        : "transparent")
+                                            }
                                         >
                                             <ListItemIcon
                                                 sx={{
                                                     ml: "2rem",
                                                     color:
                                                         active === lcText
-                                                            ? theme.palette
-                                                                  .primary[600]
-                                                            : theme.palette
-                                                                  .primary[200],
+                                                            ? themePrimary[600]
+                                                            : themePrimary[200],
                                                 }}
                                             >
                                                 {icon}
