@@ -123,18 +123,6 @@ const Sidebar = ({
                                                         ? themePrimary[600]
                                                         : themeSecondary[100],
                                             }}
-                                            onMouseEnter={(e) =>
-                                                (e.target.style.backgroundColor =
-                                                    active === lcText
-                                                        ? themeSecondary[400]
-                                                        : themeBackground.hover)
-                                            }
-                                            onMouseLeave={(e) =>
-                                                (e.target.style.backgroundColor =
-                                                    active === lcText
-                                                        ? themeSecondary[500]
-                                                        : "transparent")
-                                            }
                                         >
                                             <ListItemIcon
                                                 sx={{

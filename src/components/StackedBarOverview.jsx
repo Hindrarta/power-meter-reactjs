@@ -50,7 +50,9 @@ const StackedBarOverview = () => {
             valueScale={{ type: "linear" }}
             indexScale={{ type: "band", round: true }}
             // colors={{ scheme: "red_yellow_green" }}
-            colors={stackedBarColors}
+            // colors={stackedBarColors}
+            // colors={["#FF7777", "#FFFF77", "#77FF77"]}
+            colors={({ id, data }) => data[`${id}Color`]}
             borderColor={{
                 from: "color",
                 modifiers: [["darker", 1.6]],

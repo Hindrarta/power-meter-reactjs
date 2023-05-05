@@ -6,8 +6,10 @@ import {
     useMediaQuery,
     useTheme,
 } from "@mui/material";
+import CircularGridOverview from "components/CircularGridOverview";
 import FlexBetween from "components/FlexBetween";
 import Header from "components/Header";
+import OverviewTable from "components/OverviewTable";
 import StackedBarOverview from "components/StackedBarOverview";
 import React from "react";
 
@@ -25,8 +27,8 @@ const Dashboard = () => {
                 <Box>
                     <Button
                         sx={{
-                            backgroundColor: theme.palette.secondary.light,
-                            color: theme.palette.alt,
+                            backgroundColor: theme.palette.secondary[400],
+                            color: theme.palette.primary[600],
                             fontWeight: "bold",
                             padding: "10px 20px",
                         }}
@@ -65,7 +67,7 @@ const Dashboard = () => {
                     p="1rem"
                     borderRadius="0.55rem"
                 >
-                    <Typography>Cost Estimation Pie Chart</Typography>
+                    <CircularGridOverview />
                 </Box>
                 <Box
                     gridColumn="span 4"
@@ -74,7 +76,7 @@ const Dashboard = () => {
                     p="1rem"
                     borderRadius="0.55rem"
                 >
-                    <Typography>Cost Estimation</Typography>
+                    <OverviewTable />
                 </Box>
             </Box>
         </Box>

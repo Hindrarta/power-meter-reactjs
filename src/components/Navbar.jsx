@@ -22,6 +22,9 @@ import profileImage from "assets/profile.jpeg";
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     const dispatch = useDispatch();
     const theme = useTheme();
+
+    let root = document.querySelector("#root");
+
     return (
         <AppBar
             sx={{
@@ -53,7 +56,12 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
                 {/* RIGHT SIDE */}
                 <FlexBetween gap="1.5rem">
-                    <IconButton onClick={() => dispatch(setMode())}>
+                    <IconButton
+                        onClick={() => {
+                            dispatch(setMode());
+                            root.classList.toggle("dark");
+                        }}
+                    >
                         {theme.palette.mode === "dark" ? (
                             <DarkModeOutlined sx={{ fontSize: "25px" }} />
                         ) : (
