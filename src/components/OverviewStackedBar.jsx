@@ -4,7 +4,7 @@ import { mockDataStackedBar as data } from "data/mockData";
 import { useTheme } from "@mui/material";
 import { StackedBarColorGen } from "theme";
 
-const StackedBarOverview = () => {
+const OverviewStackedBar = () => {
     const theme = useTheme();
     const stackedBarColors = StackedBarColorGen(2);
     return (
@@ -20,6 +20,8 @@ const StackedBarOverview = () => {
                     legend: {
                         text: {
                             fill: theme.palette.secondary[200],
+                            fontSize: "16px",
+                            fontWeight: "bold",
                         },
                     },
                     ticks: {
@@ -29,12 +31,14 @@ const StackedBarOverview = () => {
                         },
                         text: {
                             fill: theme.palette.secondary[200],
+                            fontSize: "14px",
                         },
                     },
                 },
                 legends: {
                     text: {
                         fill: theme.palette.secondary[200],
+                        fontSize: "14px",
                     },
                 },
                 tooltip: {
@@ -45,8 +49,8 @@ const StackedBarOverview = () => {
             }}
             keys={["burger", "sandwich", "donut"]}
             indexBy="country"
-            margin={{ top: 50, right: 100, bottom: 100, left: 100 }}
-            padding={0.3}
+            margin={{ top: 0, right: 20, bottom: 60, left: 80 }}
+            padding={0.8}
             valueScale={{ type: "linear" }}
             indexScale={{ type: "band", round: true }}
             // colors={{ scheme: "red_yellow_green" }}
@@ -65,7 +69,7 @@ const StackedBarOverview = () => {
                 tickRotation: 0,
                 legend: "country",
                 legendPosition: "middle",
-                legendOffset: 32,
+                legendOffset: 40,
             }}
             axisLeft={{
                 tickSize: 5,
@@ -73,7 +77,7 @@ const StackedBarOverview = () => {
                 tickRotation: 0,
                 legend: "food",
                 legendPosition: "middle",
-                legendOffset: -40,
+                legendOffset: -60,
                 tickValues: 5,
             }}
             enableLabel={false}
@@ -87,17 +91,17 @@ const StackedBarOverview = () => {
             legends={[
                 {
                     dataFrom: "keys",
-                    anchor: "bottom",
+                    anchor: "bottom-left",
                     direction: "row",
                     justify: false,
-                    translateX: 0,
-                    translateY: 80,
+                    translateX: -0,
+                    translateY: 60,
                     itemsSpacing: 2,
                     itemWidth: 100,
                     itemHeight: 20,
                     itemDirection: "left-to-right",
                     itemOpacity: 0.85,
-                    symbolSize: 20,
+                    symbolSize: 15,
                     effects: [
                         {
                             on: "hover",
@@ -117,4 +121,4 @@ const StackedBarOverview = () => {
     );
 };
 
-export default StackedBarOverview;
+export default OverviewStackedBar;

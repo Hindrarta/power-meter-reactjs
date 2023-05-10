@@ -50,7 +50,7 @@ const rows = [
 const OverviewTable = () => {
     return (
         <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer sx={{ maxHeight: 300 }}>
+            <TableContainer sx={{ maxHeight: 265 }}>
                 <Table
                     sx={{ minWidth: 600 }}
                     stickyHeader

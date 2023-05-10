@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     LightModeOutlined,
     DarkModeOutlined,
     Menu as MenuIcon,
     Search,
     SettingsOutlined,
-    ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
 import { useDispatch } from "react-redux";
@@ -15,15 +14,40 @@ import {
     IconButton,
     InputBase,
     Toolbar,
+    Typography,
     useTheme,
 } from "@mui/material";
-import profileImage from "assets/profile.jpeg";
+import { useEffect } from "react";
+// import profileImage from "assets/profile.jpeg";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     const dispatch = useDispatch();
     const theme = useTheme();
-
+    const [today, setDate] = useState(new Date());
+    const locale = "en";
     let root = document.querySelector("#root");
+
+    useEffect(() => {
+        const interval = 10;
+        const timer = setInterval(() => {
+            setDate(new Date());
+        }, interval * 1000);
+        return () => {
+            clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
+        };
+    }, []);
+
+    const day = today.toLocaleDateString(locale, { weekday: "long" });
+    const date = `${day}, ${today.getDate()} ${today.toLocaleDateString(
+        locale,
+        { month: "long", year: "numeric" }
+    )}`;
+
+    const time = today.toLocaleTimeString(locale, {
+        hour: "numeric",
+        hour12: false,
+        minute: "numeric",
+    });
 
     return (
         <AppBar
@@ -56,6 +80,9 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
                 {/* RIGHT SIDE */}
                 <FlexBetween gap="1.5rem">
+                    <Typography variant="h5" fontWeight="bold">
+                        {date} - {time}
+                    </Typography>
                     <IconButton
                         onClick={() => {
                             dispatch(setMode());

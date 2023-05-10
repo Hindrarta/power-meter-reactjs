@@ -3,7 +3,7 @@ import React from "react";
 import { mockDataCircularGrid as data } from "data/mockData";
 import { useTheme } from "@mui/material";
 
-const CircularGridOverview = () => {
+const OverviewCircularGrid = () => {
     const theme = useTheme();
     return (
         <ResponsiveRadialBar
@@ -43,8 +43,9 @@ const CircularGridOverview = () => {
             }}
             valueFormat=" >-.2f"
             endAngle={360}
-            innerRadius={0.15}
-            margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
+            innerRadius={0.4}
+            padding={0.4}
+            margin={{ top: 10, right: 50, bottom: 50, left: 50 }}
             // colors={{ scheme: "red_yellow_green" }}
             colors={(dat) => dat.data.color}
             borderColor={{
@@ -61,7 +62,7 @@ const CircularGridOverview = () => {
                     direction: "row",
                     justify: false,
                     translateX: 0,
-                    translateY: 40,
+                    translateY: 25,
                     itemsSpacing: 0,
                     itemDirection: "left-to-right",
                     itemWidth: 90,
@@ -83,4 +84,4 @@ const CircularGridOverview = () => {
     );
 };
 
-export default CircularGridOverview;
+export default OverviewCircularGrid;

@@ -1,3 +1,4 @@
+import React from "react";
 import { DownloadOutlined } from "@mui/icons-material";
 import {
     Box,
@@ -6,12 +7,12 @@ import {
     useMediaQuery,
     useTheme,
 } from "@mui/material";
-import CircularGridOverview from "components/CircularGridOverview";
 import FlexBetween from "components/FlexBetween";
 import Header from "components/Header";
 import OverviewTable from "components/OverviewTable";
-import StackedBarOverview from "components/StackedBarOverview";
-import React from "react";
+import OverviewStackedBar from "components/OverviewStackedBar";
+import OverviewCircularGrid from "components/OverviewCircularGrid";
+import TimeSelector from "components/TimeSelector";
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -58,7 +59,19 @@ const Dashboard = () => {
                     p="1rem"
                     borderRadius="0.55rem"
                 >
-                    <StackedBarOverview />
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        p="0.1rem"
+                    >
+                        <Typography variant="h4" fontWeight="bold">
+                            Daily Power Consumption
+                        </Typography>
+                        <TimeSelector />
+                    </Box>
+                    <Box p="1rem" height="240px">
+                        <OverviewStackedBar />
+                    </Box>
                 </Box>
                 <Box
                     gridColumn="span 2"
@@ -66,8 +79,12 @@ const Dashboard = () => {
                     backgroundColor={theme.palette.background.alt}
                     p="1rem"
                     borderRadius="0.55rem"
+                    alignItems="center"
                 >
-                    <CircularGridOverview />
+                    <Typography variant="h4" fontWeight="bold" align="center">
+                        Power Consumption Chart
+                    </Typography>
+                    <OverviewCircularGrid />
                 </Box>
                 <Box
                     gridColumn="span 4"
@@ -76,6 +93,14 @@ const Dashboard = () => {
                     p="1rem"
                     borderRadius="0.55rem"
                 >
+                    <Typography
+                        variant="h4"
+                        fontWeight="bold"
+                        align="center"
+                        marginBottom="1rem"
+                    >
+                        Power Consumption Details
+                    </Typography>
                     <OverviewTable />
                 </Box>
             </Box>
