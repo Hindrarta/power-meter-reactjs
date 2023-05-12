@@ -2,11 +2,9 @@ import { ResponsiveBar } from "@nivo/bar";
 import React from "react";
 import { mockDataStackedBar as data } from "data/mockData";
 import { useTheme } from "@mui/material";
-import { StackedBarColorGen } from "theme";
 
 const OverviewStackedBar = () => {
     const theme = useTheme();
-    const stackedBarColors = StackedBarColorGen(2);
     return (
         <ResponsiveBar
             data={data}

@@ -6,8 +6,9 @@ import { themeSettings } from "./theme";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./scenes/dashboard";
 import Layout from "scenes/layout";
-import Device_List from "scenes/device_list";
+import DeviceList from "scenes/device_list";
 import Settings from "scenes/settings";
+import DeviceDetails from "scenes/device";
 
 function App() {
     const mode = useSelector((state) => state.global.mode);
@@ -26,9 +27,13 @@ function App() {
                             <Route path="/home" element={<Dashboard />} />
                             <Route
                                 path="/devicelist"
-                                element={<Device_List />}
+                                element={<DeviceList />}
                             />
                             <Route path="/settings" element={<Settings />} />
+                            <Route
+                                path="/device/:id"
+                                element={<DeviceDetails />}
+                            />
                         </Route>
                     </Routes>
                 </ThemeProvider>

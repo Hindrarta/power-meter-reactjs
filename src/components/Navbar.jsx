@@ -25,7 +25,6 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     const theme = useTheme();
     const [today, setDate] = useState(new Date());
     const locale = "en";
-    let root = document.querySelector("#root");
 
     useEffect(() => {
         const interval = 10;
@@ -86,7 +85,6 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                     <IconButton
                         onClick={() => {
                             dispatch(setMode());
-                            root.classList.toggle("dark");
                         }}
                     >
                         {theme.palette.mode === "dark" ? (

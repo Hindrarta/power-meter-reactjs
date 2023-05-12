@@ -1,7 +1,6 @@
 import React from "react";
 import {
     Box,
-    Divider,
     Drawer,
     IconButton,
     List,
@@ -22,7 +21,7 @@ import {
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
-import profileImage from "assets/profile.jpeg";
+// import profileImage from "assets/profile.jpeg";
 
 const navItems = [
     // { text: "Overview", icon: null },
@@ -45,7 +44,7 @@ const Sidebar = ({
     const theme = useTheme();
     const themePrimary = theme.palette.primary;
     const themeSecondary = theme.palette.secondary;
-    const themeBackground = theme.palette.background;
+    // const themeBackground = theme.palette.background;
 
     useEffect(() => {
         setActive(pathname.substring(1));
@@ -105,7 +104,7 @@ const Sidebar = ({
                                         </Typography>
                                     );
                                 }
-                                const lcText = text.toLowerCase();
+                                const lcText = urlPath.toLowerCase();
                                 return (
                                     <ListItem key={text} disablePadding>
                                         <ListItemButton
