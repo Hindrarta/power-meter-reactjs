@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import Header from "components/Header";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const deviceData = [
     {
@@ -195,7 +196,10 @@ const Device = ({ _id, deviceName, status, data }) => {
 
 const DeviceList = () => {
     const isNonMobile = useMediaQuery("(min-width:1300px)");
-
+    const navigate = useNavigate();
+    const handleSelectDevice = (_id) => {
+        navigate(`/device/${_id}`);
+    };
     return (
         <Box m="1.5rem 2.5rem">
             <Header
@@ -216,7 +220,7 @@ const DeviceList = () => {
                 }}
             >
                 {deviceData.map(({ _id, deviceName, status, data }) => (
-                    <ButtonBase onClick={() => console.log(_id)}>
+                    <ButtonBase onClick={() => handleSelectDevice(_id)}>
                         <Device
                             key={_id}
                             _id={_id}

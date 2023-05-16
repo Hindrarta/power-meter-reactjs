@@ -47,7 +47,9 @@ const Sidebar = ({
     // const themeBackground = theme.palette.background;
 
     useEffect(() => {
-        setActive(pathname.substring(1));
+        let pathStr = pathname.substring(1).split("/")[0];
+        if (pathStr === "device") pathStr = "devicelist";
+        setActive(pathStr);
     }, [pathname]);
 
     return (
