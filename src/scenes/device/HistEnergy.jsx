@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { EnergyData as data } from "./data";
 import { Typography, useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
-
+import { timeFormat } from "d3-time-format";
+import { scaleTime } from "d3-scale";
+import { BasicTooltip } from "@nivo/tooltip";
 // const data = [].concat(oriData).reverse();
 const stackedBarColors = ["#E33009", "#E2871E", "#EEEE19"];
 const labels = [
@@ -11,7 +13,15 @@ const labels = [
     { key: "c", value: "E3 / T" },
 ];
 const HistEnergy = () => {
+    const from = new Date(data[0].timestamp);
+    const to = new Date(data[data.length - 1].timestamp);
     const theme = useTheme();
+    const formatter = timeFormat("%H:%M");
+    const timeScaleTicks = useMemo(() => {
+        const scale = scaleTime().domain([from, to]);
+        const ticks = scale.ticks(5);
+        return ticks.map((tick) => formatter(tick));
+    });
 
     return (
         <ResponsiveBar
@@ -66,23 +76,24 @@ const HistEnergy = () => {
                         {labels.map((item, index) => (
                             <li key={"lg" + index}>
                                 <div className="timestamp">
-                                    <div
-                                        className="energydata"
-                                        style={{
-                                            background: stackedBarColors[index],
-                                        }}
-                                    />
-                                    <Typography
+                                    {/* <Typography
                                         fontSize="12px"
                                         color="#000000"
                                         fontWeight="bold"
                                         margin="5px 10px 5px 10px"
                                     >
                                         {labels[index].value +
-                                            ": " +
+                                            " - " +
                                             d.data[labels[index].value] +
+                                            " - " +
                                             stackedBarColors[index]}{" "}
-                                    </Typography>
+                                    </Typography> */}
+                                    <BasicTooltip
+                                        id={labels[index].value}
+                                        value={d.data[labels[index].value]}
+                                        color={stackedBarColors[index]}
+                                        enableChip
+                                    />
                                 </div>
                             </li>
                         ))}
@@ -100,10 +111,15 @@ const HistEnergy = () => {
                 from: "color",
                 modifiers: [["darker", 1.6]],
             }}
-            maxValue={150}
+            maxValue="auto"
             axisTop={null}
             axisRight={null}
             axisBottom={{
+                format: (val) => {
+                    return timeScaleTicks.includes(formatter(new Date(val)))
+                        ? formatter(new Date(val))
+                        : "";
+                },
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: -35,

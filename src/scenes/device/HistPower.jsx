@@ -49,7 +49,12 @@ const HistPower = () => {
                 },
             }}
             margin={{ top: 20, right: 110, bottom: 110, left: 70 }}
-            xScale={{ type: "point" }}
+            xScale={{
+                format: "%Y-%m-%d %H:%M:%S",
+                precision: "minute",
+                type: "time",
+                useUTC: false,
+            }}
             yScale={{
                 type: "linear",
                 min: 0,
@@ -57,6 +62,7 @@ const HistPower = () => {
                 stacked: false,
                 reverse: false,
             }}
+            xFormat="time:%Y-%m-%d %H:%M:%S"
             yFormat=" >-.2f"
             curve="catmullRom"
             axisTop={null}
@@ -68,6 +74,8 @@ const HistPower = () => {
                 legend: "Timestamp",
                 legendOffset: 50,
                 legendPosition: "middle",
+                format: "%H:%M",
+                tickValues: "every 10 minutes",
             }}
             axisLeft={{
                 tickSize: 5,
@@ -82,7 +90,8 @@ const HistPower = () => {
             enableGridY={false}
             // colors={{ scheme: "red_yellow_green" }}
             colors={(dat) => dat.color}
-            pointSize={5}
+            enablePoints={true}
+            pointSize={3}
             pointColor={{ from: "color", modifiers: [] }}
             pointBorderWidth={2}
             pointBorderColor={{ from: "color", modifiers: [] }}
