@@ -216,7 +216,6 @@ export const powerData = [
     },
 ];
 
-const stackedBarColors = ["#E33009", "#B2771E", "#EEEE19"];
 export const EnergyData = [
     {
         timestamp: "2023-01-08 13:00:00",
@@ -406,5 +405,22 @@ export const sampleData = [
         ],
         id: "fake corp. B",
         color: "#FA1234",
+    },
+];
+
+export const SummaryData = [
+    {
+        id: "PowerData",
+        P: 4.324,
+        Q: 1.748,
+        S: 4.665,
+        PF: 0.927,
+    },
+    {
+        id: "AverageVal",
+        VLL: 398.28,
+        VLN: 229.95,
+        I: 7.366,
+        F: 50,
     },
 ];

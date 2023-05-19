@@ -65,7 +65,9 @@ const DeviceDetails = () => {
                         color={theme.palette.secondary[200]}
                         fontWeight="bold"
                         sx={{ margin: "1rem 0 0 1rem" }}
-                    ></Typography>
+                    >
+                        Summary
+                    </Typography>
                     <Summary />
                 </GridBox>
                 <GridBox gridColumn={3} gridRow={1} theme={theme}>

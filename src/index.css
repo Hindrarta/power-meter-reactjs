@@ -24,3 +24,11 @@ body,
 ::-webkit-scrollbar-track:hover {
     background: #e0e0e0;
 }
+canvas {
+    /* width: 100px;
+    height: 100px; */
+    background-color: transparent;
+    border: 0px solid #141937;
+    border-radius: 4px;
+    margin: 20px 0 0 0;
+}

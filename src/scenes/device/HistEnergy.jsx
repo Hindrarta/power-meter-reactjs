@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { EnergyData as data } from "./data";
-import { Typography, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { timeFormat } from "d3-time-format";
 import { scaleTime } from "d3-scale";
@@ -13,13 +13,13 @@ const labels = [
     { key: "c", value: "E3 / T" },
 ];
 const HistEnergy = () => {
-    const from = new Date(data[0].timestamp);
-    const to = new Date(data[data.length - 1].timestamp);
     const theme = useTheme();
     const formatter = timeFormat("%H:%M");
     const timeScaleTicks = useMemo(() => {
+        const from = new Date(data[0].timestamp);
+        const to = new Date(data[data.length - 1].timestamp);
         const scale = scaleTime().domain([from, to]);
-        const ticks = scale.ticks(5);
+        const ticks = scale.ticks(10);
         return ticks.map((tick) => formatter(tick));
     });
 
@@ -76,18 +76,6 @@ const HistEnergy = () => {
                         {labels.map((item, index) => (
                             <li key={"lg" + index}>
                                 <div className="timestamp">
-                                    {/* <Typography
-                                        fontSize="12px"
-                                        color="#000000"
-                                        fontWeight="bold"
-                                        margin="5px 10px 5px 10px"
-                                    >
-                                        {labels[index].value +
-                                            " - " +
-                                            d.data[labels[index].value] +
-                                            " - " +
-                                            stackedBarColors[index]}{" "}
-                                    </Typography> */}
                                     <BasicTooltip
                                         id={labels[index].value}
                                         value={d.data[labels[index].value]}
